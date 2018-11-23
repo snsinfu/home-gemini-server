@@ -20,6 +20,8 @@ service hostapd restart
 service dnsmasq restart
 
 # User
+test -e /home || ln -s /usr/home /home
+
 pw groupadd sinfu                                      || test $? -eq 65
 pw useradd  sinfu -g sinfu -G wheel -h - -s /bin/sh -m || test $? -eq 65
 
