@@ -1,0 +1,11 @@
+interface=wlan0
+hw_mode=g
+
+ssid={{AP_SSID}}
+
+wpa=3
+auth_algs=1
+wpa_pairwise=CCMP
+rsn_pairwise=CCMP
+wpa_key_mgmt=WPA-PSK
+wpa_psk_file=/etc/hostapd.wpa_psk
