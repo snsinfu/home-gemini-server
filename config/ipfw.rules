@@ -1,0 +1,40 @@
+#!/bin/sh -ru
+
+LOOP=lo0
+ETH=re0
+WIFI=wlan0
+NAT=1
+
+SSH=22
+DNS=53
+DHCPSERV=67
+DHCPCLI=68
+
+ipfw -qf flush
+
+# NAT
+ipfw -q nat $NAT config if $ETH
+
+# Rules
+alias ADD="ipfw -q add"
+
+ADD 010 allow    all from any to any via $LOOP
+ADD 020 deny     ip  from any to any not antispoof in
+ADD 030 nat $NAT ip  from any to any via $ETH
+
+ADD 100 check-state
+
+ADD 110 allow udp from any to any $DHCPCLI out via $WIFI
+ADD 110 allow udp from any to any          out via $ETH  keep-state
+ADD 110 allow tcp from any to any          out via $ETH  keep-state setup
+
+ADD 120 allow udp from any to not me in via $WIFI keep-state
+ADD 120 allow tcp from any to not me in via $WIFI keep-state setup
+
+ADD 130 allow udp from any to me $DHCPSERV in via $WIFI
+ADD 130 allow tcp from any to me $DNS      in via $WIFI keep-state setup
+ADD 130 allow udp from any to me $DNS      in via $WIFI keep-state
+ADD 130 allow tcp from any to me $SSH      in via $WIFI keep-state setup
+ADD 130 allow tcp from any to me $SSH      in via $ETH  keep-state setup
+
+ADD 999 deny log all from any to any
