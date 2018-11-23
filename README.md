@@ -3,7 +3,7 @@ This repository contains config files for my home server.
 ### Target machine
 
 ```
-OS                  FreEBSD 12 amd64
+OS                  FreeBSD 12 amd64
 Ethernet device     re0
 WiFi device         ath0 (QCNFA222)
 Hostname            gemini
