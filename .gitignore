@@ -1,0 +1,7 @@
+.env
+
+authorized_keys
+hostapd.wpa_psk
+hostapd.conf
+
+_provision.ok
