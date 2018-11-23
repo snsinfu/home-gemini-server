@@ -15,9 +15,10 @@ You must be able to log in to the machine as root using the key `~/.ssh/id_rsa`.
 
 ### Provision
 
-Prepare two files:
+Prepare three files:
 
 - `.env` file containing `AP_SSID=your-ssid` variable definition
+- `config/authorized_keys` file containing ssh pubkeys
 - `config/hostapd.wpa_psk` file containing WPA keys
 
 Then type `make` to provision the system. Reboot is necessary.
