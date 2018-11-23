@@ -22,3 +22,9 @@ Prepare three files:
 - `config/hostapd.wpa_psk` file containing WPA keys
 
 Then type `make` to provision the system. Reboot is necessary.
+
+### TODO
+
+- Add Bluetooth PAN server - [btpand(8)][btpand]
+
+[btpand]: https://www.freebsd.org/cgi/man.cgi?query=btpand&sektion=8
