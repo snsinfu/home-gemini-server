@@ -40,4 +40,7 @@ ADD 130 allow tcp from any to me $SSH      in via $ETH  keep-state setup
 ADD 130 allow udp from any to me $MOSH     in via $WIFI keep-state
 ADD 130 allow udp from any to me $MOSH     in via $ETH  keep-state
 
+ADD 140 allow icmp from any to any via $ETH
+ADD 140 allow icmp from any to any via $WIFI
+
 ADD 999 deny log all from any to any
