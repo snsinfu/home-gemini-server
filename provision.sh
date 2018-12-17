@@ -28,5 +28,9 @@ pw useradd  sinfu -g sinfu -G wheel -h - -s /bin/sh -m || test $? -eq 65
 install -m 0700 -g sinfu -o sinfu -d              /home/sinfu/.ssh
 install -m 0600 -g sinfu -o sinfu authorized_keys /home/sinfu/.ssh
 
+# sudo
+pkg install -y sudo
+install -m 0640 sudoers_wheel /usr/local/etc/sudoers.d
+
 # Additional packages
 pkg install -y htop mosh daemontools
