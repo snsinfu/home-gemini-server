@@ -29,4 +29,4 @@ install -m 0700 -g sinfu -o sinfu -d              /home/sinfu/.ssh
 install -m 0600 -g sinfu -o sinfu authorized_keys /home/sinfu/.ssh
 
 # Additional packages
-pkg install -y htop mosh
+pkg install -y htop mosh daemontools
