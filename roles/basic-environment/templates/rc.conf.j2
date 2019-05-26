@@ -1,0 +1,21 @@
+#!/bin/sh -eu
+
+hostname="{{ ansible_hostname }}"
+
+# Internet connection
+ifconfig_{{ eth_device }}="{{ eth_config }}"
+
+# Basic services
+sshd_enable="YES"
+ntpd_enable="YES"
+ntpd_sync_on_start="YES"
+sendmail_enable="NONE"
+
+# Misc.
+keymap="us"
+keybell="NO"
+dumpdev="NO"
+syslogd_flags="-ss"
+clear_tmp_enable="YES"
+powerd_enable="YES"
+zfs_enable="YES"

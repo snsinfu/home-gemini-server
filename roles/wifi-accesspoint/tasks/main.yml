@@ -1,0 +1,56 @@
+# WiFi gateway is x.x.x.1. Clients are x.x.x.16 to x.x.x.79.
+
+- set_fact:
+    wifiap_address: "{{ wifiap_network | ipaddr(1) }}"
+    wifiap_netmask: "{{ wifiap_network | ipaddr('netmask') }}"
+    wifiap_dhcp_range:
+      - "{{ wifiap_network | ipaddr(16) | ipaddr('address') }}"
+      - "{{ wifiap_network | ipaddr(79) | ipaddr('address') }}"
+
+# Drive wlan0 in AP mode. wlan0 is configured in wifiap_rc.conf.
+
+- name: hostapd.conf is up
+  template:
+    src: hostapd.conf.j2
+    dest: /etc/hostapd.conf
+  notify:
+    - restart hostapd
+
+- name: hostapd.wpa_psk is up
+  template:
+    src: hostapd.wpa_psk.j2
+    dest: /etc/hostapd.wpa_psk
+    mode: 0600
+  notify:
+    - restart hostapd
+
+# DHCP.
+
+- name: dnsmasq is installed
+  pkgng:
+    name: dnsmasq
+    state: present
+
+- name: dnsmasq.conf is up
+  template:
+    src: dnsmasq.conf.j2
+    dest: /usr/local/etc/dnsmasq.conf
+  notify:
+    - restart dnsmasq
+
+# ipfw does NAT. FIXME: Allow additional firewall rules.
+
+- name: ipfw.rules is up
+  template:
+    src: ipfw.rules.j2
+    dest: /etc/ipfw.rules
+    mode: 0600
+  notify:
+    - restart ipfw
+
+# Configure system rc. Do not modify the main rc.conf here. Modularize.
+
+- name: system rc is configured
+  template:
+    src: wifiap_rc.conf.j2
+    dest: /etc/rc.conf.d/wifiap_rc.conf

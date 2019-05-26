@@ -1,5 +1,5 @@
 interface = wlan0
-dhcp-range = 10.1.10.10, 10.1.10.20, 255.255.255.0, 4h
+dhcp-range = {{ wifiap_dhcp_range[0] }}, {{ wifiap_dhcp_range[1] }}, {{ wifiap_lease_time }}
 cache-size = 4096
 
 # If a DHCP client claims that its name is "wpad", ignore that.

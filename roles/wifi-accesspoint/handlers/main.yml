@@ -1,0 +1,14 @@
+- name: restart hostapd
+  service:
+    name: hostapd
+    state: restarted
+
+- name: restart dnsmasq
+  service:
+    name: dnsmasq
+    state: restarted
+
+- name: restart ipfw
+  service:
+    name: ipfw
+    state: restarted

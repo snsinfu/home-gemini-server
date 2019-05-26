@@ -1,0 +1,16 @@
+#!/bin/sh -eu
+
+# Device
+wlans_{{ wifiap_device }}="wlan0"
+create_args_wlan0="wlanmode hostap"
+ifconfig_wlan0="inet {{ wifiap_address }} channel {{ wifiap_channel }} country {{ wifiap_country }}"
+
+# Firewall
+firewall_script="/etc/ipfw.rules"
+firewall_enable="YES"
+firewall_nat_enable="YES"
+gateway_enable="YES"
+
+# Services
+hostapd_enable="YES"
+dnsmasq_enable="YES"

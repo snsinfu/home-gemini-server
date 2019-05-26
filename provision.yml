@@ -1,0 +1,9 @@
+- hosts: gemini
+  become: yes
+
+  vars:
+    ansible_python_interpreter: /usr/local/bin/python3
+
+  roles:
+    - basic-environment
+    - wifi-accesspoint

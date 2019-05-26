@@ -1,0 +1,21 @@
+ansible_host: 10.10.10.1
+ansible_user: sinfu
+
+eth_device: re0
+eth_config: DHCP
+
+wifiap_device: ath0
+wifiap_network: 10.10.10.0/24
+wifiap_channel: 3
+wifiap_country: JP
+wifiap_lease_time: 24h
+wifiap_ssid: example-ssid
+
+wifiap_keys:
+  - name: Client A
+    mac: 01:23:45:67:89:ab
+    psk: a8866cf3ee876b7d37d1b788836ec9f1faf0a1c2877abc5b42f9977d1130dce1
+
+  - name: Client B
+    mac: cd:ef:01:23:45:67
+    psk: 43bc541c0ed07ec8d3ede19cf2c8e413db3a2fa22481186f896fbce53d6b366c

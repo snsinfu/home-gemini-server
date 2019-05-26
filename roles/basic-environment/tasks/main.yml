@@ -1,0 +1,31 @@
+# Basic console tools useful for manual disaster recovery.
+
+- name: basic operational tools are installed
+  pkgng:
+    name:
+      - curl
+      - fzf
+      - git
+      - htop
+      - mosh
+      - ripgrep
+      - tmux
+      - tree
+      - vim-console
+      - zsh
+    state: present
+
+# Kernel configurations.
+
+- name: sysctl.conf is up
+  template:
+    src: sysctl.conf.j2
+    dest: /etc/sysctl.conf
+
+# Keep the main rc.conf absolute basic. Modularize specific service configs
+# into rc.conf.d directory.
+
+- name: rc.conf is up
+  template:
+    src: rc.conf.j2
+    dest: /etc/rc.conf
