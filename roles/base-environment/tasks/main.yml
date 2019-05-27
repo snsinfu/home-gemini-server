@@ -8,7 +8,10 @@
       - git
       - htop
       - mosh
+      - nload
+      - py36-glances
       - ripgrep
+      - socat
       - tmux
       - tree
       - vim-console
