@@ -19,3 +19,8 @@ syslogd_flags="-ss"
 clear_tmp_enable="YES"
 powerd_enable="YES"
 zfs_enable="YES"
+
+# Modules
+for rc in /etc/rc.conf.locals/*; do
+  . ${rc}
+done

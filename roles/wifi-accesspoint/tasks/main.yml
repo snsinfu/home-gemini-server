@@ -53,4 +53,4 @@
 - name: system rc is configured
   template:
     src: wifiap_rc.conf.j2
-    dest: /etc/rc.conf.d/wifiap_rc.conf
+    dest: /etc/rc.conf.locals/wifiap_rc.conf

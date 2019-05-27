@@ -26,9 +26,14 @@
     dest: /etc/sysctl.conf
 
 # Keep the main rc.conf absolute basic. Modularize specific service configs
-# into rc.conf.d directory.
+# into rc.conf.locals directory.
 
 - name: rc.conf is up
   template:
     src: rc.conf.j2
     dest: /etc/rc.conf
+
+- name: rc.conf.locals directory is present
+  file:
+    path: /etc/rc.conf.locals
+    state: directory
